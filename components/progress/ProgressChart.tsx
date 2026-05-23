@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import { styles } from '@/app/(tabs)/styles/progress.styles';
+import { styles } from '@/styles/progress.styles';
 import LegendItem from './LegendItem';
 import { colors } from '@/constants/theme';
 

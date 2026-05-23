@@ -6,7 +6,7 @@ import {
 
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { styles } from '@/app/(tabs)/styles/home.styles';
+import { styles } from '@/styles/home.styles';
 
 export default function EmptyState({
     onAdd,

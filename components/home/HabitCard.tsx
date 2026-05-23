@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 
 import { Habit } from '@/store/habitsStore';
-import { styles } from '@/app/(tabs)/styles/home.styles';
+import { styles } from '@/styles/home.styles';
 
 interface Props {
     habit: Habit;

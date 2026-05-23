@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import { styles } from '../style';
+import { styles } from '../../styles/setup.styles';
 
 export default function Section({
     label,

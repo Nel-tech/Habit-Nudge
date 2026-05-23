@@ -5,21 +5,18 @@ import {
   RefreshControl,
 } from 'react-native';
 import { useFocusEffect } from 'expo-router';
-
 import { colors } from '@/constants/theme';
 import { loadProgress, loadHabits, DayRecord } from '@/store/habitsStore';
-
-import { styles } from '@/app/(tabs)/styles/progress.styles';
+import { styles } from '@/styles/progress.styles';
 import {
   getChartData,
   calculateStats,
 } from '@/utils/progressUtils';
-
-import ProgressHeader from '@/app/(tabs)/components/progress/ProgressHeader';
-import SummaryCard from '@/app/(tabs)/components/progress/SummaryCard';
-import MiniStat from '@/app/(tabs)/components/progress/MiniStat';
-import ProgressChart from '@/app/(tabs)/components/progress/ProgressChart';
-import InsightCard from '@/app/(tabs)/components/progress/InsightCard';
+import ProgressHeader from '@/components/progress/ProgressHeader';
+import SummaryCard from '@/components/progress/SummaryCard';
+import MiniStat from '@/components/progress/MiniStat';
+import ProgressChart from '@/components/progress/ProgressChart';
+import InsightCard from '@/components/progress/InsightCard';
 
 import {
   TrendingUp,

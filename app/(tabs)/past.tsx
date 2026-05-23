@@ -4,16 +4,11 @@ import {
   ScrollView,
   RefreshControl,
 } from 'react-native';
-
 import { colors } from '@/constants/theme';
-
-import ArchivedHabitCard from '@/app/(tabs)/components/past/ArchivedHabitCard';
-import EmptyState from '@/app/(tabs)/components/past/EmptyState';
-
-import { useArchivedHabits } from '@/app/(tabs)/hooks/useArchivedHabits';
-
-import { styles } from '@/app/(tabs)/styles/past.styles';
-
+import ArchivedHabitCard from '@/components/past/ArchivedHabitCard';
+import EmptyState from '@/components/past/EmptyState';
+import { useArchivedHabits } from '@/hooks/useArchivedHabits';
+import { styles } from '@/styles/past.styles';
 export default function PastHabitsScreen() {
   const {
     archived,

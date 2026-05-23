@@ -7,7 +7,7 @@ import { Archive } from 'lucide-react-native';
 
 import { colors } from '@/constants/theme';
 
-import { styles } from '@/app/(tabs)/styles/past.styles';
+import { styles } from '@/styles/past.styles';
 
 export default function EmptyState() {
     return (

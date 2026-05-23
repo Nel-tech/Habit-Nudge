@@ -5,19 +5,13 @@ import {
   ScrollView,
   RefreshControl,
 } from 'react-native';
-
 import { useRouter } from 'expo-router';
-
 import { colors } from '@/constants/theme';
-
-import HomeHeader from '@/app/(tabs)/components/home/HomeHeader';
-import HabitCard from '@/app/(tabs)/components/home/HabitCard';
-import EmptyState from '@/app/(tabs)/components/home/EmptyState';
-
-import { useHabits } from '@/app/(tabs)/hooks/useHabits';
-
-import { styles } from '@/app/(tabs)/styles/home.styles';
-
+import HomeHeader from '@/components/home/HomeHeader';
+import HabitCard from '@/components/home/HabitCard';
+import EmptyState from '@/components/home/EmptyState';
+import { useHabits } from '@/hooks/useHabits';
+import { styles } from '@/styles/home.styles';
 export default function HomeScreen() {
   const router = useRouter();
 
@@ -49,7 +43,7 @@ export default function HomeScreen() {
           <EmptyState
             onAdd={() =>
               router.push(
-                '/setup/SetupScreen'
+                '/setup'
               )
             }
           />

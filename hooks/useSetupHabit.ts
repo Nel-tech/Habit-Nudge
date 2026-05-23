@@ -12,7 +12,7 @@ import {
 import {
   requestNotificationPermission,
   scheduleNudges,
-} from '@/hooks/useHabit';
+} from '@/hooks/useNotification';
 
 export function useSetupHabit(router: any) {
   const [habitText, setHabitText] = useState('');

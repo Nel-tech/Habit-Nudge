@@ -55,7 +55,7 @@ export default function WelcomeScreen() {
       <View style={styles.bottomSection}>
         <TouchableOpacity
           style={styles.ctaButton}
-          onPress={() => router.push('/setup/SetupScreen')}
+          onPress={() => router.push('/setup')}
           activeOpacity={0.85}
         >
           <LinearGradient

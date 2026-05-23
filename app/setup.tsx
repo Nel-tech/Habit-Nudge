@@ -11,17 +11,16 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 
-import { colors } from '@/constants/theme';
 
-import Header from './components/Header';
-import Section from './components/Section';
-import HabitInput from './components/HabitInput';
-import FrequencySelector from './components/FrequencySelector';
-import TimeSelector from './components/TimeSelector';
-import SummaryCard from './components/SummaryCard';
+import Header from '../components/setup/Header';
+import Section from '../components/setup/Section';
+import HabitInput from '../components/setup/HabitInput';
+import FrequencySelector from '../components/setup/FrequencySelector';
+import TimeSelector from '../components/setup/TimeSelector';
+import SummaryCard from '../components/setup/SummaryCard';
 
-import { useSetupHabit } from './hooks/useSetupHabit';
-import { styles } from './style';
+import { useSetupHabit } from '../hooks/useSetupHabit';
+import { styles } from '../styles/setup.styles';
 
 export default function SetupScreen() {
     const router = useRouter();

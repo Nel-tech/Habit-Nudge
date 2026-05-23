@@ -3,7 +3,7 @@ import {
     Text,
 } from 'react-native';
 
-import { styles } from '@/app/(tabs)/styles/past.styles';
+import { styles } from '@/styles/past.styles';
 
 interface Props {
     icon: React.ReactNode;

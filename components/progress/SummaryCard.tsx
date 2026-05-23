@@ -2,7 +2,7 @@ import { View, Text } from 'react-native';
 import { Activity } from 'lucide-react-native';
 
 import { colors } from '@/constants/theme';
-import { styles } from '@/app/(tabs)/styles/progress.styles';
+import { styles } from '@/styles/progress.styles';
 
 interface Props {
     weekWins: number;

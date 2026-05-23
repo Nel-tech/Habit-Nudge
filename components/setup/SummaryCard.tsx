@@ -5,7 +5,7 @@ import {
     NudgeFrequency,
 } from '@/store/habitsStore';
 
-import { styles } from '../style';
+import { styles } from '../../styles/setup.styles';
 
 interface Props {
     habitText: string;

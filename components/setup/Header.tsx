@@ -8,7 +8,7 @@ import { ArrowLeft } from 'lucide-react-native';
 import { useRouter } from 'expo-router';
 
 import { colors } from '@/constants/theme';
-import { styles } from '../style';
+import { styles } from '../../styles/setup.styles';
 
 export default function Header() {
     const router = useRouter();
