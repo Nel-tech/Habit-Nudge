@@ -29,14 +29,14 @@ export default function WelcomeScreen() {
         style={StyleSheet.absoluteFill}
       />
 
-      <View style={styles.glowContainer}>
+      {/* <View style={styles.glowContainer}>
         <View style={styles.glow} />
-      </View>
+      </View> */}
 
       <View style={styles.content}>
-        <View style={styles.badge}>
+        {/* <View style={styles.badge}>
           <Text style={styles.badgeText}>Silent. Smart. Effective.</Text>
-        </View>
+        </View> */}
 
         <Text style={styles.headline}>Fix that habit.</Text>
         <Text style={styles.headlineAccent}>No effort required.</Text>
@@ -55,7 +55,7 @@ export default function WelcomeScreen() {
       <View style={styles.bottomSection}>
         <TouchableOpacity
           style={styles.ctaButton}
-          onPress={() => router.push('/setup')}
+          onPress={() => router.push('/setup/SetupScreen')}
           activeOpacity={0.85}
         >
           <LinearGradient

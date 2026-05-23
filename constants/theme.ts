@@ -33,8 +33,8 @@ export const radius = {
   full: 9999,
 };
 
-export const fonts = {
-  regular: 'Inter-Regular',
-  semiBold: 'Inter-SemiBold',
-  bold: 'Inter-Bold',
-};
+export const fonts= {
+  regular: 'Poppins-Regular',
+  semiBold: 'Poppins-SemiBold',
+  bold: 'Poppins-Bold',
+}

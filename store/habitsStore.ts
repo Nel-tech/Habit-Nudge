@@ -2,7 +2,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export type NudgeTrigger = 'outside' | 'sitting' | 'both';
 export type NudgeFrequency = '30min' | '1hour' | '2hours';
+export const FREQUENCIES: { value: NudgeFrequency; label: string }[] = [
+  { value: '30min', label: 'Every 30 min' },
+  { value: '1hour', label: 'Every hour' },
+  { value: '2hours', label: 'Every 2 hours' },
+];
 
+export const TIMES = [
+  '6:00 AM', '7:00 AM', '8:00 AM', '9:00 AM', '10:00 AM',
+  '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM',
+  '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM',
+];
 export interface Habit {
   id: string;
   text: string;

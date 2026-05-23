@@ -1,0 +1,200 @@
+import { StyleSheet } from 'react-native';
+import {
+  colors,
+  fonts,
+  spacing,
+  radius,
+} from '@/constants/theme';
+export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+  scrollContent: {
+    paddingHorizontal: spacing.lg,
+    paddingTop: 60,
+    paddingBottom: 32,
+    gap: spacing.lg,
+  },
+  header: {
+    gap: 6,
+  },
+  title: {
+    fontFamily: fonts.bold,
+    fontSize: 32,
+    color: colors.textPrimary,
+    letterSpacing: -0.5,
+  },
+  subtitle: {
+    fontFamily: fonts.regular,
+    fontSize: 15,
+    color: colors.textSecondary,
+  },
+  summaryCard: {
+    backgroundColor: colors.surface,
+    borderRadius: radius.lg,
+    padding: spacing.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  summaryLeft: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: spacing.md,
+  },
+  summaryIconWrap: {
+    width: 40,
+    height: 40,
+    borderRadius: radius.sm,
+    backgroundColor: colors.accentSoft,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 2,
+  },
+  summaryMain: {
+    fontFamily: fonts.regular,
+    fontSize: 16,
+    color: colors.textSecondary,
+    lineHeight: 24,
+    flex: 1,
+  },
+  summaryHighlight: {
+    fontFamily: fonts.bold,
+    color: colors.textPrimary,
+  },
+  summarySecondary: {
+    fontFamily: fonts.regular,
+    fontSize: 13,
+    color: colors.textMuted,
+    marginTop: 4,
+  },
+  statsRow: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+  },
+  miniStat: {
+    flex: 1,
+    borderRadius: radius.md,
+    padding: spacing.md,
+    alignItems: 'center',
+    gap: 6,
+  },
+  miniStatValue: {
+    fontFamily: fonts.bold,
+    fontSize: 20,
+    color: colors.textPrimary,
+  },
+  miniStatLabel: {
+    fontFamily: fonts.regular,
+    fontSize: 11,
+    color: colors.textSecondary,
+  },
+  chartCard: {
+    backgroundColor: colors.surface,
+    borderRadius: radius.lg,
+    padding: spacing.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    gap: spacing.lg,
+  },
+  chartTitle: {
+    fontFamily: fonts.semiBold,
+    fontSize: 14,
+    color: colors.textSecondary,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+  },
+  chart: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+    height: 160,
+    paddingTop: 16,
+  },
+  barGroup: {
+    flex: 1,
+    alignItems: 'center',
+    gap: 6,
+  },
+  barContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    width: '100%',
+  },
+  barStack: {
+    width: 24,
+    borderRadius: radius.sm,
+    overflow: 'hidden',
+    justifyContent: 'flex-end',
+  },
+  barSegment: {
+    width: '100%',
+  },
+  barWin: {
+    backgroundColor: colors.success,
+    borderTopLeftRadius: 4,
+    borderTopRightRadius: 4,
+  },
+  barMiss: {
+    backgroundColor: colors.error + '80',
+  },
+  emptyBar: {
+    width: 24,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: colors.border,
+  },
+  barLabel: {
+    fontFamily: fonts.regular,
+    fontSize: 11,
+    color: colors.textMuted,
+  },
+  barCount: {
+    fontFamily: fonts.semiBold,
+    fontSize: 10,
+    color: colors.textSecondary,
+  },
+  chartLegend: {
+    flexDirection: 'row',
+    gap: spacing.lg,
+    justifyContent: 'center',
+    paddingTop: spacing.xs,
+  },
+  legendItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.xs,
+  },
+  legendDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+  },
+  legendLabel: {
+    fontFamily: fonts.regular,
+    fontSize: 12,
+    color: colors.textSecondary,
+  },
+  insightCard: {
+    backgroundColor: colors.accentSoft,
+    borderRadius: radius.md,
+    padding: spacing.md,
+    borderWidth: 1,
+    borderColor: colors.accent + '30',
+    gap: spacing.sm,
+  },
+  insightTitle: {
+    fontFamily: fonts.semiBold,
+    fontSize: 13,
+    color: colors.accent,
+    textTransform: 'uppercase',
+    letterSpacing: 0.6,
+  },
+  insightText: {
+    fontFamily: fonts.regular,
+    fontSize: 15,
+    color: colors.textSecondary,
+    lineHeight: 23,
+  },
+});
