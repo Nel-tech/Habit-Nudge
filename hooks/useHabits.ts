@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { useFocusEffect } from 'expo-router';
-
+import { cancelAllNudges, scheduleNudges } from './useNotification';
 import {
   Habit,
   loadHabits,
@@ -34,26 +34,28 @@ export function useHabits() {
     setRefreshing(false);
   }
 
-  async function archiveHabit(id: string) {
-    const all = await loadHabits();
+async function archiveHabit(id: string) {
+  // Stop all notifications
+  await cancelAllNudges();
 
-    const updated = all.map((h) =>
-      h.id === id
-        ? {
-            ...h,
-            archived: true,
-            archivedAt:
-              new Date().toISOString(),
-          }
-        : h
-    );
+  const all = await loadHabits();
+  const updated = all.map((h) =>
+    h.id === id
+      ? { ...h, archived: true, archivedAt: new Date().toISOString() }
+      : h
+  );
 
-    await saveHabits(updated);
+  await saveHabits(updated);
 
-    setHabits(
-      updated.filter((h) => !h.archived)
-    );
+  const remaining = updated.filter((h) => !h.archived);
+  
+  // Restart nudges for remaining active habits
+  for (const habit of remaining) {
+    await scheduleNudges(habit.id, habit.text, habit.frequency);
   }
+
+  setHabits(remaining);
+}
 
   async function handleCheckin(
     habitId: string,

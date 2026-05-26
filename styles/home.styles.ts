@@ -1,20 +1,16 @@
 import { colors, fonts, spacing, radius } from '@/constants/theme';
 import {
-  View,
-  Text,
   StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  RefreshControl,
+  
 } from 'react-native';
 export const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.background },
   scrollContent: {
-    paddingHorizontal: spacing.lg,
-    paddingTop: 64,
-    paddingBottom: 40,
-    gap: spacing.lg,
-  },
+  paddingHorizontal: spacing.lg,
+  paddingTop: 64,
+  paddingBottom: 80, 
+  gap: spacing.lg,
+},
 
   // Header
   header: {
@@ -190,6 +186,19 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     color: colors.white,
   },
+  doneBtn: {
+  backgroundColor: colors.accentSoft,
+  borderRadius: radius.md,
+  paddingVertical: spacing.md,
+  alignItems: 'center',
+  borderWidth: 1,
+  borderColor: colors.accent + '40',
+},
+doneBtnText: {
+  fontFamily: fonts.semiBold,
+  fontSize: 14,
+  color: colors.accent,
+},
 });
 
 

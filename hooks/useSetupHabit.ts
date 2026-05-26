@@ -65,8 +65,10 @@ export function useSetupHabit(router: any) {
 
       if (granted) {
         await scheduleNudges(
+           newHabit.id, 
           habitText.trim(),
           frequency
+          
         );
       }
 

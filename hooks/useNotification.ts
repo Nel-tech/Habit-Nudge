@@ -1,12 +1,60 @@
 import { Alert, Linking, Platform } from 'react-native';
 import * as Notifications from 'expo-notifications';
 import { NudgeFrequency } from '@/store/habitsStore';
+import { recordNudge } from '@/store/habitsStore';
 
 const CHANNEL_ID = 'habit-nudge-channel';
+
+// Quick action button identifiers
+const ACTION_FIXED_IT = 'FIXED_IT';
+const ACTION_TOO_LATE = 'TOO_LATE';
+
+// Set up notification categories with quick action buttons
+export async function setupNotificationActions() {
+  await Notifications.setNotificationCategoryAsync('nudge', [
+    {
+      identifier: ACTION_FIXED_IT,
+      buttonTitle: '✓ Fixed it',
+      options: {
+        isDestructive: false,
+        isAuthenticationRequired: false,
+        opensAppToForeground: false, // stays in background
+      },
+    },
+    {
+      identifier: ACTION_TOO_LATE,
+      buttonTitle: '✗ Too late',
+      options: {
+        isDestructive: false,
+        isAuthenticationRequired: false,
+        opensAppToForeground: false,
+      },
+    },
+  ]);
+}
+
+// Handle user tapping a quick action button
+export function setupNotificationResponseHandler() {
+  return Notifications.addNotificationResponseReceivedListener(
+    async (response) => {
+      const actionId = response.actionIdentifier;
+      const habitId = response.notification.request.content.data?.habitId as string;
+
+      if (!habitId) return;
+
+      if (actionId === ACTION_FIXED_IT) {
+        await recordNudge(habitId, true);
+      } else if (actionId === ACTION_TOO_LATE) {
+        await recordNudge(habitId, false);
+      }
+    }
+  );
+}
 
 // Set up Android notification channel
 async function setupNotificationChannel() {
   if (Platform.OS === 'android') {
+    await Notifications.deleteNotificationChannelAsync(CHANNEL_ID);
     await Notifications.setNotificationChannelAsync(CHANNEL_ID, {
       name: 'Habit Nudges',
       importance: Notifications.AndroidImportance.MAX,
@@ -19,6 +67,7 @@ async function setupNotificationChannel() {
   }
 }
 
+// How notifications behave when app is in foreground
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
@@ -31,6 +80,7 @@ Notifications.setNotificationHandler({
 
 export async function requestNotificationPermission(): Promise<boolean> {
   await setupNotificationChannel();
+  await setupNotificationActions();
 
   const { status: existing } = await Notifications.getPermissionsAsync();
   if (existing === 'granted') return true;
@@ -51,22 +101,32 @@ export async function requestNotificationPermission(): Promise<boolean> {
 }
 
 export async function scheduleNudges(
+  habitId: string,
   text: string,
   freq: NudgeFrequency
 ): Promise<void> {
   await setupNotificationChannel();
+  await setupNotificationActions();
+
+  // const seconds = {
+  //   '30min': 1800,
+  //   '1hour': 3600,
+  //   '2hours': 7200,
+  // }[freq];
 
   const seconds = {
-    '30min': 1800,
-    '1hour': 3600,
-    '2hours': 7200,
-  }[freq];
+  '30min': 60,  
+  '1hour': 60,
+  '2hours': 60,
+}[freq];
 
   await Notifications.scheduleNotificationAsync({
     content: {
       title: '🔔 Habit Nudge',
       body: text,
       sound: true,
+      categoryIdentifier: 'nudge', // attaches quick action buttons
+      data: { habitId },           // passed back when button is tapped
       priority: Notifications.AndroidNotificationPriority.MAX,
     },
     trigger: {

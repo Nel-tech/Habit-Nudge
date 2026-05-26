@@ -8,12 +8,21 @@ import {
   Poppins_600SemiBold,
   Poppins_700Bold,
 } from '@expo-google-fonts/poppins';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as SplashScreen from 'expo-splash-screen';
-
+import { setupNotificationResponseHandler } from '@/hooks/useNotification';
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   useFrameworkReady();
+
+ 
+
+  useEffect(() => {
+    const subscription = setupNotificationResponseHandler();
+    return () => subscription.remove();
+  }, []);
+
 
   const [fontsLoaded, fontError] = useFonts({
     'Poppins-Regular': Poppins_400Regular,
@@ -33,13 +42,16 @@ export default function RootLayout() {
 
   return (
     <>
+      <SafeAreaProvider>
       <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="splash" /> 
         <Stack.Screen name="index" />
         <Stack.Screen name="setup" />
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="light" />
+      </SafeAreaProvider>
     </>
   );
 }

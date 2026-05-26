@@ -16,9 +16,7 @@ export default function SummaryCard({
     return (
         <View style={styles.summaryCard}>
             <View style={styles.summaryLeft}>
-                <View style={styles.summaryIconWrap}>
-                    <Activity size={20} color={colors.accent} />
-                </View>
+                
 
                 <View>
                     <Text style={styles.summaryMain}>

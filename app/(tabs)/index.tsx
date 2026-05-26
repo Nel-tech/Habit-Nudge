@@ -20,7 +20,6 @@ export default function HomeScreen() {
     refreshing,
     onRefresh,
     archiveHabit,
-    handleCheckin,
   } = useHabits();
 
   return (
@@ -52,18 +51,6 @@ export default function HomeScreen() {
             <HabitCard
               key={habit.id}
               habit={habit}
-              onCaught={() =>
-                handleCheckin(
-                  habit.id,
-                  true
-                )
-              }
-              onMissed={() =>
-                handleCheckin(
-                  habit.id,
-                  false
-                )
-              }
               onArchive={() =>
                 archiveHabit(habit.id)
               }
