@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Habit Nudge – Fix that habit. No effort required.</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0B0F1A;
+  --card:#13131A;
+  --border:#2A2A3A;
+  --accent:#2563EB;
+  --accent-hover:#1d4ed8;
+  --text:#F0F4FF;
+  --muted:#8899AA;
+  --radius:14px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Syne',sans-serif}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(11,15,26,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(42,42,58,0.5)}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:-0.02em}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.9rem;transition:color 0.2s}
+.nav-links a:hover{color:var(--text)}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:0.75rem 1.5rem;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:500;text-decoration:none;cursor:pointer;transition:all 0.2s;border:none}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-hover);transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 2rem 4rem;max-width:1200px;margin:0 auto;gap:4rem}
+.hero-content{flex:1;min-width:0}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,0.1);border:1px solid rgba(37,99,235,0.25);color:#93b4fd;font-size:0.8rem;padding:6px 14px;border-radius:100px;margin-bottom:1.5rem;font-weight:500}
+.hero-badge::before{content:'';width:7px;height:7px;background:#2563EB;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero h1{font-size:clamp(2.4rem,5vw,3.8rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;margin-bottom:1.25rem}
+.hero h1 em{color:var(--accent);font-style:normal}
+.hero-sub{color:var(--muted);font-size:1.1rem;line-height:1.7;max-width:480px;margin-bottom:2rem;font-weight:300}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+
+/* PHONE MOCKUP */
+.hero-visual{flex:0 0 300px;display:flex;justify-content:center}
+.phone{width:260px;height:520px;background:var(--card);border:1px solid var(--border);border-radius:40px;padding:20px 16px;position:relative;box-shadow:0 40px 80px rgba(0,0,0,0.5)}
+.phone::before{content:'';position:absolute;top:14px;left:50%;transform:translateX(-50%);width:80px;height:6px;background:var(--border);border-radius:10px}
+.phone-screen{background:#0d1117;border-radius:24px;height:100%;padding:1.5rem 1rem;display:flex;flex-direction:column;gap:12px;overflow:hidden}
+.phone-header{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:var(--text);margin-top:10px}
+.phone-sub{font-size:0.65rem;color:var(--muted);margin-top:-8px}
+.habit-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 12px;display:flex;align-items:center;gap:10px}
+.habit-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.habit-dot.blue{background:#2563EB}
+.habit-dot.green{background:#22c55e}
+.habit-dot.amber{background:#f59e0b}
+.habit-info{flex:1;min-width:0}
+.habit-name{font-size:0.7rem;font-weight:500;color:var(--text)}
+.habit-streak{font-size:0.6rem;color:var(--muted)}
+.habit-check{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.habit-check.done{background:#2563EB;border-color:#2563EB}
+.habit-check.done::after{content:'✓';font-size:0.55rem;color:#fff}
+.phone-nudge{background:rgba(37,99,235,0.1);border:1px solid rgba(37,99,235,0.2);border-radius:10px;padding:8px 10px;margin-top:auto}
+.nudge-label{font-size:0.55rem;color:#93b4fd;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px}
+.nudge-text{font-size:0.65rem;color:var(--text)}
+
+/* SECTIONS */
+section{padding:5rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-label{font-size:0.75rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.75rem}
+.section-title{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;letter-spacing:-0.02em;margin-bottom:1rem}
+.section-sub{color:var(--muted);font-size:1rem;max-width:500px;font-weight:300}
+
+/* HOW IT WORKS */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:3rem}
+.step{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;position:relative;overflow:hidden;transition:border-color 0.2s}
+.step:hover{border-color:rgba(37,99,235,0.4)}
+.step-number{font-family:'Syne',sans-serif;font-size:3.5rem;font-weight:800;color:rgba(37,99,235,0.1);position:absolute;top:1rem;right:1.25rem;line-height:1}
+.step-icon{width:40px;height:40px;background:rgba(37,99,235,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem}
+.step h3{font-size:1rem;font-weight:600;margin-bottom:0.5rem}
+.step p{font-size:0.9rem;color:var(--muted);line-height:1.6}
+
+/* FEATURES */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;margin-top:3rem}
+.feature{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:border-color 0.2s,transform 0.2s}
+.feature:hover{border-color:rgba(37,99,235,0.35);transform:translateY(-2px)}
+.feature-icon{font-size:1.5rem;margin-bottom:0.75rem}
+.feature h3{font-size:0.95rem;font-weight:600;margin-bottom:0.4rem}
+.feature p{font-size:0.85rem;color:var(--muted);line-height:1.6}
+
+/* ROADMAP */
+.roadmap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-top:3rem}
+.roadmap-item{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;transition:border-color 0.2s}
+.roadmap-item:hover{border-color:rgba(37,99,235,0.3)}
+.roadmap-pill{background:rgba(37,99,235,0.08);border:1px solid rgba(37,99,235,0.2);color:#93b4fd;font-size:0.7rem;font-weight:600;padding:3px 10px;border-radius:100px;white-space:nowrap}
+.roadmap-item p{font-size:0.9rem;font-weight:500}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-tagline{color:var(--muted);font-size:0.85rem;margin-bottom:1rem}
+.footer-tagline strong{color:var(--text)}
+.footer-links{display:flex;justify-content:center;gap:1.5rem;margin-bottom:1rem}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;transition:color 0.2s}
+.footer-links a:hover{color:var(--accent)}
+.footer-privacy{font-size:0.8rem;color:rgba(136,153,170,0.6)}
+
+/* DIVIDER */
+.divider{border:none;border-top:1px solid var(--border);margin:0}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero{flex-direction:column;text-align:center;padding-top:6rem;gap:2.5rem}
+  .hero-sub{margin:0 auto 2rem}
+  .hero-btns{justify-content:center}
+  .hero-visual{order:-1}
+  .phone{width:220px;height:440px}
+  .nav-links{display:none}
+}
+@media(max-width:480px){
+  .hero h1{font-size:2rem}
+  .hero-visual{display:none}
+}
+
+/* FADE IN */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{opacity:0;animation:fadeUp 0.6s ease forwards}
+.delay-1{animation-delay:0.1s}
+.delay-2{animation-delay:0.2s}
+.delay-3{animation-delay:0.3s}
+.delay-4{animation-delay:0.4s}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Habit<span>Nudge</span></div>
+  <ul class="nav-links">
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+  </ul>
+  <a href="#download" class="btn btn-primary" style="padding:0.55rem 1.2rem;font-size:0.85rem">Download APK</a>
+</nav>
+
+<!-- HERO -->
+<section style="padding:0">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-badge fade-up">Android App · Free · No account needed</div>
+      <h1 class="fade-up delay-1">Fix that habit.<br/><em>No effort</em> required.</h1>
+      <p class="hero-sub fade-up delay-2">Your phone nudges you silently throughout the day. You just correct yourself.</p>
+      <div class="hero-btns fade-up delay-3">
+        <a href="#download" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download APK
+        </a>
+        <a href="https://github.com" target="_blank" class="btn btn-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual fade-up delay-4">
+      <div class="phone">
+        <div class="phone-screen">
+          <p class="phone-header">Today's Habits</p>
+          <p class="phone-sub">3 of 4 done · Keep going</p>
+          <div class="habit-card">
+            <div class="habit-dot blue"></div>
+            <div class="habit-info">
+              <div class="habit-name">Morning stretch</div>
+              <div class="habit-streak">🔥 12 day streak</div>
+            </div>
+            <div class="habit-check done"></div>
+          </div>
+          <div class="habit-card">
+            <div class="habit-dot green"></div>
+            <div class="habit-info">
+              <div class="habit-name">Drink water</div>
+              <div class="habit-streak">🔥 7 day streak</div>
+            </div>
+            <div class="habit-check done"></div>
+          </div>
+          <div class="habit-card">
+            <div class="habit-dot amber"></div>
+            <div class="habit-info">
+              <div class="habit-name">No phone at meals</div>
+              <div class="habit-streak">3 day streak</div>
+            </div>
+            <div class="habit-check"></div>
+          </div>
+          <div class="habit-card">
+            <div class="habit-dot blue"></div>
+            <div class="habit-info">
+              <div class="habit-name">Read 10 pages</div>
+              <div class="habit-streak">🔥 5 day streak</div>
+            </div>
+            <div class="habit-check done"></div>
+          </div>
+          <div class="phone-nudge">
+            <div class="nudge-label">Nudge just sent</div>
+            <div class="nudge-text">Time to check — no phone at meals today?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="container">
+    <p class="section-label">How it works</p>
+    <h2 class="section-title">Three steps. That's it.</h2>
+    <p class="section-sub">No dashboards to fill in. No streaks to obsess over. Just small, quiet corrections.</p>
+    <div class="steps">
+      <div class="step">
+        <span class="step-number">01</span>
+        <div class="step-icon">✍️</div>
+        <h3>Describe your habit in your own words</h3>
+        <p>Type it naturally — "stop checking my phone in the morning" or "drink water before coffee". No templates.</p>
+      </div>
+      <div class="step">
+        <span class="step-number">02</span>
+        <div class="step-icon">🔔</div>
+        <h3>We nudge you silently throughout the day</h3>
+        <p>Quiet notifications at smart times remind you of your intention — not an alarm, just a gentle check-in.</p>
+      </div>
+      <div class="step">
+        <span class="step-number">03</span>
+        <div class="step-icon">✅</div>
+        <h3>Catch yourself. Correct it. Mark it done.</h3>
+        <p>One tap. That's all. No journaling, no reflection prompts. Just acknowledge and move on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <p class="section-label">Features</p>
+    <h2 class="section-title">Built to stay out of your way</h2>
+    <p class="section-sub">Every decision made to reduce friction, not add to it.</p>
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-icon">🤫</div>
+        <h3>Silent background nudges</h3>
+        <p>Notifications that whisper, not shout. Timed throughout the day so they actually land.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🗣️</div>
+        <h3>Your words, not ours</h3>
+        <p>Write habits the way you actually think about them. No forced categories or templates.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">⚡</div>
+        <h3>Quick notification actions</h3>
+        <p>Mark done directly from the notification. You never have to open the app.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📊</div>
+        <h3>Progress tracking</h3>
+        <p>Simple streaks and completion history. Enough to feel good, not enough to stress you out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="container">
+    <p class="section-label">Roadmap</p>
+    <h2 class="section-title">What's coming next</h2>
+    <p class="section-sub">This is just the beginning. Here's where Habit Nudge is headed.</p>
+    <div class="roadmap-grid">
+      <div class="roadmap-item">
+        <span class="roadmap-pill">Soon</span>
+        <p>iOS support</p>
+      </div>
+      <div class="roadmap-item">
+        <span class="roadmap-pill">Planned</span>
+        <p>AI habit simplification</p>
+      </div>
+      <div class="roadmap-item">
+        <span class="roadmap-pill">Planned</span>
+        <p>Accountability partner</p>
+      </div>
+      <div class="roadmap-item">
+        <span class="roadmap-pill">Planned</span>
+        <p>Home screen widget</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<hr class="divider"/>
+<footer>
+  <div class="footer-inner">
+    <p class="footer-tagline">Built with care by <strong>Lee</strong></p>
+    <div class="footer-links">
+      <a href="https://github.com/Nel-tech" target="_blank">GitHub</a>
+      <a href="https://nelson-adegbasa.vercel.app/" target="_blank">Portfolio</a>
+    </div>
+    <p class="footer-privacy">No account needed. All data stays on your device.</p>
+  </div>
+</footer>
+
+</body>
+</html>
