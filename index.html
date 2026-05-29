@@ -23,8 +23,8 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 h1,h2,h3,h4{font-family:'Syne',sans-serif}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(11,15,26,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(42,42,58,0.5)}
-.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:-0.03em;line-height:1}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-around;align-items:center;background:rgba(11,15,26,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(42,42,58,0.5)}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:-0.03em;line-height:1;}
 .nav-logo span{color:var(--accent)}
 .nav-links{display:flex;gap:2rem;list-style:none}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:0.9rem;transition:color 0.2s}
@@ -125,8 +125,11 @@ footer{border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center}
   .nav-links{display:none}
 }
 @media(max-width:480px){
+  .nav-logo{margin-right: auto;}
   .hero h1{font-size:2rem}
   .hero-visual{display:none}
+  .hero-content{text-align: left;}
+  .nav-button{display: none}
 }
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
@@ -146,10 +149,11 @@ footer{border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center}
     <li><a href="#features">Features</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
   </ul>
-  <a href="#download" class="btn btn-primary" style="padding:0.55rem 1.2rem;font-size:0.85rem">Download APK</a>
+  <a href="#download" class="btn btn-primary nav-button" style="padding:0.55rem 1.2rem;font-size:0.85rem">Download APK</a>
 </nav>
 
 <!-- HERO -->
+
 <section style="padding:0">
   <div class="hero">
     <div class="hero-content">
@@ -161,55 +165,14 @@ footer{border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center}
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download APK
         </a>
-        <a href="https://github.com/Nel-tech" target="_blank" class="btn btn-outline">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          View on GitHub
-        </a>
       </div>
     </div>
     <div class="hero-visual fade-up delay-4">
-      <div class="phone">
-        <div class="phone-screen">
-          <p class="phone-header">Today's Habits</p>
-          <p class="phone-sub">3 of 4 done · Keep going</p>
-          <div class="habit-card">
-            <div class="habit-dot blue"></div>
-            <div class="habit-info">
-              <div class="habit-name">Morning stretch</div>
-              <div class="habit-streak">12 day streak</div>
-            </div>
-            <div class="habit-check done"></div>
-          </div>
-          <div class="habit-card">
-            <div class="habit-dot green"></div>
-            <div class="habit-info">
-              <div class="habit-name">Drink water</div>
-              <div class="habit-streak">7 day streak</div>
-            </div>
-            <div class="habit-check done"></div>
-          </div>
-          <div class="habit-card">
-            <div class="habit-dot amber"></div>
-            <div class="habit-info">
-              <div class="habit-name">No phone at meals</div>
-              <div class="habit-streak">3 day streak</div>
-            </div>
-            <div class="habit-check"></div>
-          </div>
-          <div class="habit-card">
-            <div class="habit-dot blue"></div>
-            <div class="habit-info">
-              <div class="habit-name">Read 10 pages</div>
-              <div class="habit-streak">5 day streak</div>
-            </div>
-            <div class="habit-check done"></div>
-          </div>
-          <div class="phone-nudge">
-            <div class="nudge-label">Nudge just sent</div>
-            <div class="nudge-text">Time to check — no phone at meals today?</div>
-          </div>
-        </div>
-      </div>
+      <img 
+        src="mockup-portrait.png" 
+        alt="Habit Nudge app screenshot"
+        style="width:260px;border-radius:36px;border:1px solid #2A2A3A;box-shadow:0 40px 80px rgba(0,0,0,0.5);"
+      />
     </div>
   </div>
 </section>
