@@ -70,10 +70,8 @@ async function setupNotificationChannel() {
   }
 }
 
-// How notifications behave when app is in foreground
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
-    shouldShowAlert: true,
     shouldPlaySound: true,
     shouldSetBadge: false,
     shouldShowBanner: true,

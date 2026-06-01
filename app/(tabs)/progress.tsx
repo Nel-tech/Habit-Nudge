@@ -24,10 +24,12 @@ import {
   CircleCheck as CheckCircle,
   Circle as XCircle,
 } from 'lucide-react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function ProgressScreen() {
   const [records, setRecords] = useState<DayRecord[]>([]);
   const [refreshing, setRefreshing] = useState(false);
+  const insets = useSafeAreaInsets();
 
   const fetchData = useCallback(async () => {
     const progress = await loadProgress();
@@ -78,7 +80,10 @@ export default function ProgressScreen() {
             tintColor={colors.accent}
           />
         }
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[
+          styles.scrollContent,
+          { paddingTop: Math.max(insets.top + 16, 64) }
+        ]}
       >
         <ProgressHeader />
 

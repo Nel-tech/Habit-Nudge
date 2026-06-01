@@ -12,8 +12,10 @@ import HabitCard from '@/components/home/HabitCard';
 import EmptyState from '@/components/home/EmptyState';
 import { useHabits } from '@/hooks/useHabits';
 import { styles } from '@/styles/home.styles';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 export default function HomeScreen() {
   const router = useRouter();
+  const insets = useSafeAreaInsets();
 
   const {
     habits,
@@ -32,9 +34,10 @@ export default function HomeScreen() {
             tintColor={colors.accent}
           />
         }
-        contentContainerStyle={
-          styles.scrollContent
-        }
+        contentContainerStyle={[
+          styles.scrollContent,
+          { paddingTop: Math.max(insets.top + 16, 64) }
+        ]}
       >
         <HomeHeader />
 
