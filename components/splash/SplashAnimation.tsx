@@ -8,7 +8,6 @@ import Animated, {
 
 import { styles } from '@/styles/splash.styles';
 
-import StickFigure from './StickFigure';
 import BrandText from './BrandText';
 
 import { useSplashAnimation } from '@/hooks/useSplashAnimation';
@@ -29,11 +28,8 @@ export default function SplashAnimation() {
     }
 
     const {
-        nRotation,
         nScale,
-        stickX,
-        stickOpacity,
-        legKickAngle,
+        nOpacity,
         textOpacity,
         textY,
         screenOpacity,
@@ -42,10 +38,8 @@ export default function SplashAnimation() {
     });
 
     const nStyle = useAnimatedStyle(() => ({
-        transform: [
-            { rotate: `${nRotation.value}deg` },
-            { scale: nScale.value },
-        ],
+        transform: [{ scale: nScale.value }],
+        opacity: nOpacity.value,
     }));
 
     const screenStyle = useAnimatedStyle(() => ({
@@ -57,15 +51,12 @@ export default function SplashAnimation() {
             style={[styles.container, screenStyle]}
         >
             <View style={styles.stage}>
-                <StickFigure
-                    stickX={stickX}
-                    stickOpacity={stickOpacity}
-                    legKickAngle={legKickAngle}
-                />
-
                 <Animated.View
                     style={[styles.nWrapper, nStyle]}
                 >
+                    <Animated.Text style={styles.hText}>
+                        H
+                    </Animated.Text>
                     <Animated.Text style={styles.nText}>
                         N
                     </Animated.Text>

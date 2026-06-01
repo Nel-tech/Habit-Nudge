@@ -1,7 +1,7 @@
 {
   "expo": {
-     "name": "Habit Nudge",
-     "slug": "bolt-expo-nativewind",
+    "name": "Habit Nudge",
+    "slug": "bolt-expo-nativewind",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/habit.png",
@@ -32,6 +32,12 @@
     },
     "android": {
       "package": "com.favourlee.boltexponativewind"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/ebcc636f-b7c3-477a-938f-e82ed3f4181b"
     }
   }
 }

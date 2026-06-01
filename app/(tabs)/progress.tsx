@@ -4,6 +4,7 @@ import {
   ScrollView,
   RefreshControl,
 } from 'react-native';
+import { appEvents, EVENTS } from '@/utils/eventEmitter';
 import { useFocusEffect } from 'expo-router';
 import { colors } from '@/constants/theme';
 import { loadProgress, loadHabits, DayRecord } from '@/store/habitsStore';
@@ -38,6 +39,16 @@ export default function ProgressScreen() {
   useFocusEffect(
     useCallback(() => {
       fetchData();
+
+     
+      const listener = appEvents.on(
+        EVENTS.NUDGE_RECORDED,
+        fetchData
+      );
+
+      return () => {
+        appEvents.off(EVENTS.NUDGE_RECORDED, fetchData);
+      };
     }, [fetchData])
   );
 

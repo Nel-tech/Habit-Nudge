@@ -6,6 +6,7 @@ import {
   loadHabits,
   saveHabits,
 } from '@/store/habitsStore';
+import { appEvents, EVENTS } from '@/utils/eventEmitter';
 
 export function useHabits() {
   const [habits, setHabits] =
@@ -25,6 +26,12 @@ export function useHabits() {
   useFocusEffect(
     useCallback(() => {
       fetchHabits();
+
+      appEvents.on(EVENTS.NUDGE_RECORDED, fetchHabits);
+
+      return () => {
+        appEvents.off(EVENTS.NUDGE_RECORDED, fetchHabits);
+      };
     }, [fetchHabits])
   );
 

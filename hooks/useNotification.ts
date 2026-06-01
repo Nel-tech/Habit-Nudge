@@ -2,6 +2,7 @@ import { Alert, Linking, Platform } from 'react-native';
 import * as Notifications from 'expo-notifications';
 import { NudgeFrequency } from '@/store/habitsStore';
 import { recordNudge } from '@/store/habitsStore';
+import { appEvents, EVENTS } from '@/utils/eventEmitter';
 
 const CHANNEL_ID = 'habit-nudge-channel';
 
@@ -44,8 +45,10 @@ export function setupNotificationResponseHandler() {
 
       if (actionId === ACTION_FIXED_IT) {
         await recordNudge(habitId, true);
+        appEvents.emit(EVENTS.NUDGE_RECORDED); 
       } else if (actionId === ACTION_TOO_LATE) {
         await recordNudge(habitId, false);
+        appEvents.emit(EVENTS.NUDGE_RECORDED); 
       }
     }
   );

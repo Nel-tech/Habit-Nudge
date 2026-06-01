@@ -30,72 +30,37 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
+    width: 130,
+    height: 130,
+    borderRadius: 32,
+    backgroundColor: colors.surfaceAlt,
+    borderWidth: 1,
+    borderColor: colors.border,
+    shadowColor: colors.accent,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.2,
+    shadowRadius: 24,
+    elevation: 8,
+    flexDirection: 'row',
+  },
+
+  hText: {
+    fontSize: 64,
+    fontFamily: fonts.bold,
+    color: colors.textPrimary,
+    lineHeight: 74,
+    marginTop: 6,
   },
 
   nText: {
-    fontSize: 120,
+    fontSize: 64,
     fontFamily: fonts.bold,
     color: colors.accent,
-    lineHeight: 140,
+    lineHeight: 74,
+    marginTop: 6,
+    marginLeft: -6,
   },
 
-  stickFigure: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    width: 40,
-    height: 100,
-    alignItems: 'center',
-  },
-
-  head: {
-    width: 18,
-    height: 18,
-    borderRadius: 9,
-    backgroundColor: colors.accent,
-    marginBottom: 2,
-  },
-
-  body: {
-    width: 2,
-    height: 30,
-    backgroundColor: colors.accent,
-  },
-
-  arm: {
-    position: 'absolute',
-    width: 2,
-    height: 22,
-    backgroundColor: colors.accent,
-    top: 28,
-  },
-
-  armLeft: {
-    left: 10,
-    transform: [{ rotate: '40deg' }],
-  },
-
-  armRight: {
-    right: 10,
-    transform: [{ rotate: '-40deg' }],
-  },
-
-  leg: {
-    position: 'absolute',
-    width: 2,
-    height: 28,
-    backgroundColor: colors.accent,
-    top: 52,
-  },
-
-  legLeft: {
-    left: 14,
-    transform: [{ rotate: '15deg' }],
-  },
-
-  legRight: {
-    right: 14,
-  },
 
   textWrapper: {
     alignItems: 'center',
