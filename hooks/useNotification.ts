@@ -109,17 +109,17 @@ export async function scheduleNudges(
   await setupNotificationChannel();
   await setupNotificationActions();
 
-  // const seconds = {
-  //   '30min': 1800,
-  //   '1hour': 3600,
-  //   '2hours': 7200,
-  // }[freq];
-
   const seconds = {
-  '30min': 60,  
-  '1hour': 60,
-  '2hours': 60,
-}[freq];
+    '30min': 1800,
+    '1hour': 3600,
+    '2hours': 7200,
+  }[freq];
+
+//   const seconds = {
+//   '30min': 60,  
+//   '1hour': 60,
+//   '2hours': 60,
+// }[freq];
 
   await Notifications.scheduleNotificationAsync({
     content: {
