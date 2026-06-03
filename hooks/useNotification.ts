@@ -3,6 +3,7 @@ import * as Notifications from 'expo-notifications';
 import { NudgeFrequency } from '@/store/habitsStore';
 import { recordNudge } from '@/store/habitsStore';
 import { appEvents, EVENTS } from '@/utils/eventEmitter';
+import { FREQUENCIES } from '@/store/habitsStore';
 
 const CHANNEL_ID = 'habit-nudge-channel';
 
@@ -109,17 +110,7 @@ export async function scheduleNudges(
   await setupNotificationChannel();
   await setupNotificationActions();
 
-  const seconds = {
-    '30min': 1800,
-    '1hour': 3600,
-    '2hours': 7200,
-  }[freq];
-
-//   const seconds = {
-//   '30min': 60,  
-//   '1hour': 60,
-//   '2hours': 60,
-// }[freq];
+  const seconds = FREQUENCIES.find((f) => f.value === freq)?.seconds ?? 1800;
 
   await Notifications.scheduleNotificationAsync({
     content: {

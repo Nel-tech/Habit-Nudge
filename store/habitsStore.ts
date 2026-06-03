@@ -1,12 +1,17 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export type NudgeTrigger = 'outside' | 'sitting' | 'both';
-export type NudgeFrequency = '30min' | '1hour' | '2hours';
-export const FREQUENCIES: { value: NudgeFrequency; label: string }[] = [
-  { value: '30min', label: 'Every 30 min' },
-  { value: '1hour', label: 'Every hour' },
-  { value: '2hours', label: 'Every 2 hours' },
-];
+
+export const FREQUENCIES = [
+  { value: '5min',   label: 'Every 5 min',   seconds: 300  },
+  { value: '10min',  label: 'Every 10 min',  seconds: 600  },
+  { value: '15min',  label: 'Every 15 min',  seconds: 900  },
+  { value: '30min',  label: 'Every 30 min',  seconds: 1800 },
+  { value: '1hour',  label: 'Every hour',    seconds: 3600 },
+  { value: '2hours', label: 'Every 2 hours', seconds: 7200 },
+] as const;
+
+export type NudgeFrequency = typeof FREQUENCIES[number]['value'];
 
 export const TIMES = [
   '6:00 AM', '7:00 AM', '8:00 AM', '9:00 AM', '10:00 AM',
